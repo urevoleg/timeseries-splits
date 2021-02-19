@@ -27,10 +27,15 @@ def get_splits(data):
             cnt += 1
             if s >= max(data_diff):
                 # получили больше максимальной складываем срез массива в разбиение
-                l_res += [data[idx:idx + cnt]]
+                if idx + cnt == 1:
+                    # если максимальный интервал с самого начала
+                    l_res += [data[idx:idx + 1 + cnt]]
+                    cnt += 1
+                else:
+                    l_res += [data[idx:idx + cnt]]
                 break
-        idx += cnt
 
+        idx += cnt
         # если у нас остался последний элемент основного списка, то добавим его к последнему разбиению
         if idx == len(data) - 1:
             idx += 1
