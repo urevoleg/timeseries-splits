@@ -30,13 +30,17 @@ def get_splits(data):
                 l_res += [data[idx:idx + cnt]]
                 break
         idx += cnt
+
         # если у нас остался последний элемент основного списка, то добавим его к последнему разбиению
         if idx == len(data) - 1:
             idx += 1
             l_res[-1].append(data[-1])
-        if idx > len(data) - 4:
+
+        # если осталось менее 4 элементов
+        if len(data) - idx <= 4:
             l_res += [data[idx:]]
             idx += 4
+
     return {'min_interval': max(data_diff), 'splits': l_res}
 
 if __name__ == '__main__':
