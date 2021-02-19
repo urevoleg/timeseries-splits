@@ -35,6 +35,7 @@ def get_splits(data):
         if idx == len(data) - 1:
             idx += 1
             l_res[-1].append(data[-1])
+            break
 
         # если осталось менее 4 элементов
         if len(data) - idx <= 4:
