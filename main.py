@@ -22,17 +22,21 @@ def get_splits(data):
         s = 0
         cnt = 0
         # суммируем разницу между элементами, до тех пор пока она небольше максимальной разницы
-        for i in range(idx - 1, len(data_diff)):
+        for i in range(idx, len(data_diff)):
             s += data_diff[i]
             cnt += 1
-            if s > max(data_diff):
+            if s >= max(data_diff):
                 # получили больше максимальной складываем срез массива в разбиение
                 l_res += [data[idx:idx + cnt]]
                 break
         idx += cnt
         # если у нас остался последний элемент основного списка, то добавим его к последнему разбиению
         if idx == len(data) - 1:
+            idx += 1
             l_res[-1].append(data[-1])
+        if idx > len(data) - 4:
+            l_res += [data[idx:]]
+            idx += 4
     return {'min_interval': max(data_diff), 'splits': l_res}
 
 if __name__ == '__main__':
