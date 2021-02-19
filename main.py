@@ -35,5 +35,6 @@ def get_splits(data):
             l_res[-1].append(data[-1])
     return {'min_interval': max(data_diff), 'splits': l_res}
 
-for t in test_data:
-    print(get_splits(t))
+if __name__ == '__main__':
+    for t in test_data:
+        print(get_splits(t))
