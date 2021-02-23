@@ -43,9 +43,9 @@ def get_splits(data):
             break
 
         # если осталось менее 2 элементов
-        if len(data) - idx <= 2:
+        if len(data) - idx <= 4:
             l_res += [data[idx:]]
-            idx += 2
+            idx += 4
 
     return {'min_interval': max(data_diff), 'splits': l_res}
 
