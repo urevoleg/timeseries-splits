@@ -42,10 +42,10 @@ def get_splits(data):
             l_res[-1].append(data[-1])
             break
 
-        # если осталось менее 2 элементов
-        if len(data) - idx <= 4:
+        # если осталось не более 3 элементов
+        if len(data) - idx <= 3:
             l_res += [data[idx:]]
-            idx += 4
+            idx += 3
 
     return {'min_interval': max(data_diff), 'splits': l_res}
 
