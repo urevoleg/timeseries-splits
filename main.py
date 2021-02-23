@@ -27,7 +27,7 @@ def get_splits(data):
             cnt += 1
             if s >= max(data_diff):
                 # получили больше максимальной складываем срез массива в разбиение
-                if idx + cnt == 1:
+                if cnt == 1:
                     # если максимальный интервал с самого начала
                     l_res += [data[idx:idx + 1 + cnt]]
                     cnt += 1
