@@ -27,14 +27,13 @@ def old_get_splits(data):
         for i in range(idx, len(data_diff)):
             s += data_diff[i]
             cnt += 1
-            if s >= max(data_diff):
+            if s >= max(data_diff) or i == len(data_diff) - 1:
                 # получили больше максимальной складываем срез массива в разбиение
-                if idx + cnt == 1:
+                # или дошли до конца разностей, но не превышаем максимального интервала
+                if cnt == 1:
                     # если максимальный интервал с самого начала
-                    l_res += [data[idx:idx + 1 + cnt]]
                     cnt += 1
-                else:
-                    l_res += [data[idx:idx + cnt]]
+                l_res += [data[idx:idx + cnt]]
                 break
 
         idx += cnt
@@ -44,10 +43,10 @@ def old_get_splits(data):
             l_res[-1].append(data[-1])
             break
 
-        # если осталось менее 4 элементов
-        if len(data) - idx <= 4:
+        # если осталось не более 2 элементов
+        if len(data) - idx <= 2:
             l_res += [data[idx:]]
-            idx += 4
+            idx += 2
 
     return {'min_interval': max(data_diff), 'splits': l_res}
 
