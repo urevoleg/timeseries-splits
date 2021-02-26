@@ -51,19 +51,19 @@ def old_get_splits(data):
     return {'min_interval': max(data_diff), 'splits': l_res}
 
 def get_ranges(data, interval=1):
-  delta = 0
-  # если последний элемент нечетный, то добавить еще интервал
-  if data[-1] % interval:
-      delta = 1
-  return [[data[0]+interval*i, data[0]+interval*(i+1)] for i in range(data[-1]//interval + delta)]
+    delta = 0
+    # если последний элемент нечетный, то добавить еще интервал
+    if data[-1] % interval:
+        delta = 1
+    return [[data[0]+interval*i, data[0]+interval*(i+1)] for i in range(data[-1]//interval + delta)]
 
 def funct_to_mininimize(l):
-  """Функция принимает разбиения и ищет разбиения с кол-вом элементов 1"""
-  return reduce(lambda a, b: a + b, map(lambda x: 1 if len(x) == 1 else 0, l))
+    """Функция принимает разбиения и ищет разбиения с кол-вом элементов 1"""
+    return reduce(lambda a, b: a + b, map(lambda x: 1 if len(x) == 1 else 0, l))
 
 def get_splits(data, interval):
-  ar = np.array(data)
-  return [list(ar[(ar >= r[0]) & (ar < r[1])]) for r in get_ranges(data, interval=interval)]
+    ar = np.array(data)
+    return [list(ar[(ar >= r[0]) & (ar < r[1])]) for r in get_ranges(data, interval=interval)]
 
 def find_splits(data):
     # проверяем, если элементов
